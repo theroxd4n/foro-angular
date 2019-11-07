@@ -19,6 +19,13 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@nowzoo/ngx-highlight-js": "^2.1.15",
+    "@nowzoo/sheetload": "0.0.7",
+    "@types/jquery": "^3.3.31",
+    "angular-file-uploader": "^5.0.2",
+    "angular2-moment": "^1.9.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
