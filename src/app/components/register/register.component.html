@@ -3,6 +3,10 @@
     <p>{{page_title}}</p>
 
     <hr>
+
+    <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">Te has registrado correctamente. ¡<a [routerLink]="['/login']">Inicia sesión</a> y empieza a interactuar con los demás!</div>
+
+    <div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">No se ha podido completar el registro. Inténtalo de nuevo.</div>
     <form class="col-md-5 pl-0 ml-0" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
         <div class="form-group">
             <label for="name">Nombre</label>
