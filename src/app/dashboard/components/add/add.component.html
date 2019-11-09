@@ -1,0 +1,35 @@
+<div class="col-lg-10">
+    <h3>{{page_title}}</h3>
+
+    <hr>
+    <div class="alert alert-success col-md-12 mt-3" *ngIf="status == 'success' && !is_edit">¡Se ha creado el nuevo tema correctamente!</div>
+    <div class="alert alert-danger col-md-12 mt-3" *ngIf="status == 'error' && !is_edit">No se ha podido crear el tema. Inténtalo de nuevo.</div>
+
+    <div class="alert alert-success col-md-12 mt-3" *ngIf="status == 'success' && is_edit">¡Se ha actualizado el tema correctamente!</div>
+    <div class="alert alert-danger col-md-12 mt-3" *ngIf="status == 'error' && is_edit">No se ha podido actualizar el tema. Inténtalo de nuevo.</div>
+
+    <form #newTopicForm="ngForm" (ngSubmit)="onSubmit(newTopicForm)">
+
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" name="title" #title="ngModel" [(ngModel)]="topic.title" required class="form-control">
+            <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">El título no es válido.</small>
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido</label>
+            <textarea name="content" #content="ngModel" [(ngModel)]="topic.content" required class="form-control"></textarea>
+            <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">El contenido no es válido.</small>
+        </div>
+        <div class="form-group">
+            <label for="code">Escribe tu código</label>
+            <textarea name="code" #code="ngModel" [(ngModel)]="topic.code" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="lang">¿Que lenguaje estás usando?</label>
+            <input type="text" name="lang" #lang="ngModel" [(ngModel)]="topic.lang" required class="form-control">
+            <small *ngIf="!lang.valid && lang.touched" class="invalid-feedback d-block">Debes introducir un lenguaje de programación.</small>
+        </div>
+
+        <input type="submit" value="Publicar tema" class="btn btn-success" [disabled]="newTopicForm.invalid">
+    </form>
+</div>
