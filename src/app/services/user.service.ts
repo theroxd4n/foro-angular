@@ -9,6 +9,8 @@ import { global } from './global';
 @Injectable()
 export class UserService {
     public url: string;
+    public identity;
+    public token;
     constructor(
         private _http: HttpClient
     ) {
@@ -43,5 +45,41 @@ export class UserService {
 
         // HACER PETICION AJAX
         return this._http.post(this.url + 'login', params, { headers: headers });
+    }
+
+    getIdentity(){
+        let identity = JSON.parse(localStorage.getItem('identity'));
+        
+        if(identity && identity != null && identity != undefined && identity != 'undefined'){
+            this.identity = identity;
+        } else {
+            this.identity = null
+        }
+
+        return this.identity;
+    }
+    getToken(){
+        let token = localStorage.getItem('token');
+        
+        if(token && token != null && token != undefined && token != 'undefined'){
+            this.token = token;
+        } else {
+            this.token = null
+        }
+
+        return this.token;
+    }
+
+    update(user):Observable<any>{
+        // CONVERTIR USER A UN JSON STRING
+        let params = JSON.stringify(user);
+
+        // DEFINIR HEADERS
+
+        let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+
+        // HACER PETICION AJAX
+
+        return this._http.put(this.url+'user/update', params, {headers: headers});
     }
 }
