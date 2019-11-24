@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { global } from '../services/global';
 
 @Injectable()
@@ -44,5 +44,14 @@ export class TopicService{
         let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
 
         return this._http.delete(this.url+'topic/'+topicId, {headers: headers});
+    }
+
+    getTopics(page = 1):Observable<any>{
+
+        return this._http.get(this.url+'topics/'+page);
+    }
+
+    search(searchString):Observable<any>{
+        return this._http.get(this.url+'search/'+searchString);
     }
 }

@@ -10,10 +10,11 @@ import { global } from './services/global';
   providers: [UserService]
 })
 export class AppComponent implements OnInit, DoCheck {
-  public title = 'Foro en Angular';
+  public title = 'CODEFORUM';
   public identity;
   public token;
   public url: string;
+  public search;
 
   constructor(
     private _userService: UserService,
@@ -42,5 +43,9 @@ export class AppComponent implements OnInit, DoCheck {
 
     this.token = null;
     this._router.navigate(['/home']);
+  }
+
+  goSearch(){
+    this._router.navigate(['search', this.search]);
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserGuard } from '../services/user.guard';
 
 // COMPONENTES
 
@@ -10,7 +11,7 @@ import { ListComponent } from './components/list/list.component';
 
 const dashboardRoutes: Routes = [
     {
-        path: 'dashboard', component: MainComponent, children: [
+        path: 'dashboard', component: MainComponent, canActivate: [UserGuard], children: [
             { path: '', component: ListComponent },
             { path: 'my-topics', component: ListComponent },
             { path: 'create-topic', component: AddComponent },

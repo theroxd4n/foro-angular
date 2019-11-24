@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
-    <a class="navbar-brand" [routerLink]="['/home']">NG-FORO</a>
+    <a class="navbar-brand" [routerLink]="['/home']">CODEFORUM</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,21 +12,23 @@
           <a class="nav-link" [routerLink]="['/home']">Inicio <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Temas</a>
-        </li>
-        <li class="nav-item" *ngIf="identity">
-          <a class="nav-link" href="#">Crear tema</a>
+          <a class="nav-link" [routerLink]="['/topics']">Temas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Compañeros</a>
+          <a class="nav-link" [routerLink]="['/users']">Compañeros</a>
+        </li>
+        <li class="nav-item" *ngIf="identity">
+          <a class="nav-link" [routerLink]="['/dashboard/create-topic']">Crear tema</a>
         </li>
         <li class="nav-item">
           &nbsp; &nbsp;
         </li>
         <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+          <form class="form-inline my-2 my-lg-0" #searchForm="ngForm">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+              name="searchString" #searchString="ngModel" [(ngModel)]="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+              (click)="goSearch(searchForm)">Buscar</button>
           </form>
         </li>
       </ul>
@@ -52,7 +54,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['/dashboard']">Panel de usuario</a>
-            <a class="dropdown-item" href="#">Mi perfil</a>
+            <a class="dropdown-item" [routerLink]="['/profile', identity._id]">Mi perfil</a>
             <a class="dropdown-item" [routerLink]="['/settings']">Ajustes</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item pointer" (click)="logout()">Cerrar sesión</a>
@@ -65,4 +67,13 @@
 
 <div class="container">
   <router-outlet></router-outlet>
+</div>
+
+
+<div class="container">
+  <footer class="footer fixed-bottom text-center py-3 bg-light">
+    <div class="container">
+      <span class="text-muted">Daniel Serrano Cobos &copy; 2019.</span>
+    </div>
+  </footer>
 </div>

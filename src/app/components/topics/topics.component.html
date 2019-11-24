@@ -1,1 +1,38 @@
-<p>topics works!</p>
+<div class="col-lg-12 mt-3" *ngIf="!topics">
+    <img src="assets/img/loading.gif" alt="loading">
+</div>
+
+<div class="col-lg-12 mt-3" *ngIf="topics">
+    <h1>{{page_title}}</h1>
+    <hr>
+
+
+
+    <p *ngIf="topics.length == 0">No hay temas que correspondan con la búsqueda especificada. </p>
+
+    <ul class="list-group list-topics">
+        <li class="list-group-item" *ngFor="let topic of topics">
+            <h4>
+                <a [routerLink]="['/topic', topic._id]">{{topic.title}}</a>
+            </h4>
+            <span class="badge badge-primary">{{topic.user.name + ' ' + topic.user.surname}}</span>
+            <span class="badge badge-light ml-2">{{topic.date | amLocale: 'es' | amTimeAgo}}</span>
+            <a [routerLink]="['/topic', topic._id]" class="bt btn-sm btn-success float-right d-block mx-auto">Leer</a>
+        </li>
+    </ul>
+
+
+    <div class="clearfix"></div>
+
+
+    <ul class="pagination mt-4" *ngIf="!no_paginate">
+        <li class="page-item">
+            <a class="page-link" [routerLink]="['/topics', prevPage]">&laquo;</a>
+        </li>
+        <li class="page-item" *ngFor="let num of number_pages">
+            <a class="page-link" [routerLink]="['/topics', num]">{{num}}</a>
+        </li>
+        <li class="page-item"><a class="page-link" [routerLink]="['/topics', nextPage]">&raquo;</a></li>
+    </ul>
+
+</div>

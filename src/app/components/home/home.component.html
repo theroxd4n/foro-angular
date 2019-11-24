@@ -5,9 +5,9 @@
             <p class="lead">Pregunta tus dudas, aprende y comparte tus conocimientos a tus compañeros desarrolladores
             </p>
             <p>
-                <a class="btn btn-primary btn-lg mr-3" href="#">Ver temas</a>
-                <a class="btn btn-success btn-lg mr-3" href="#">Ver compañeros</a>
-                <a class="btn btn-warning btn-lg mr-3" href="#">Añade un nuevo tema</a>
+                <a class="btn btn-primary btn-lg mr-3" [routerLink]="['/topics']">Ver temas</a>
+                <a class="btn btn-success btn-lg mr-3" [routerLink]="['/users']">Ver compañeros</a>
+                <a class="btn btn-warning btn-lg mr-3" *ngIf="identity && identity.name" [routerLink]="['/dashboard/create-topic']">Añade un nuevo tema</a>
             </p>
 
         </div>
